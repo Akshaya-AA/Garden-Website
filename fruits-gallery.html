@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Garden</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .card-container {
+            perspective: 1000px;
+            margin-bottom: 30px;
+        }
+        .card {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            margin: 0 auto;
+        }
+        .card:hover {
+            transform: rotateY(180deg);
+            cursor: pointer;
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .card-front {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card-back {
+            background-color: #f8f9fa;
+            transform: rotateY(180deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">My Garden</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="color: white;"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"><img src="images/home icon.png" alt="" height="20px" width="20px"> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"><img src="images/about icon.png" alt="" height="20px" width="20px"> About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="plantsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/plants icon.png" alt="" height="20px" width="20px"> Plants</a>
+              <div class="dropdown-menu" aria-labelledby="plantsDropdown">
+                <a class="dropdown-item" href="vegetable-gallery.html"><img src="images/vegetable icon.png" alt="" height="20px" width="20px"> Vegetable Gallery</a>
+                <a class="dropdown-item" href="fruits-gallery.html"><img src="images/fruit icon.png" alt="" height="20px" width="20px"> Fruit Gallery</a>
+                <a class="dropdown-item" href="flower-gallery.html"><img src="images/flower icon.png" alt="" height="20px" width="20px"> Flower Gallery</a>
+                <a class="dropdown-item" href="indoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Indoor Plants</a>
+                <a class="dropdown-item" href="outdoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Outdoor Plants</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/shop icon.png" alt="" height="20px" width="20px"> Shop</a>
+              <div class="dropdown-menu" aria-labelledby="shopDropdown">
+                <a class="dropdown-item" href="garden plants.html"><img src="images/grd plants.png" alt="" height="20px" width="20px"> Plants & Seeds</a>
+                <a class="dropdown-item" href="gardening tools.html"><img src="images/gar tools.png" alt="" height="20px" width="20px"> Garden Tools</a>
+               
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"><img src="images/contact icon.png" alt="" height="20px" width="20px"> Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><img src="images/login icon.png" alt="" height="20px" width="20px"> Login</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action="#" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search plants..." aria-label="Search" name="query">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>     
+          <a href="#" class="cart-icon" data-toggle="modal" data-target="#cartModal">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+    </nav>
+ 
+<div class="container">
+    <h1 class="text-center my-4">Fruit Gallery</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/apple.jpg" alt="Apple">
+                        <div class="card-body">
+                            <h5 class="card-title">Apple</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Apple</h3>
+                            <p>Crunchy and sweet!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/banana.jpg" alt="Banana">
+                        <div class="card-body">
+                            <h5 class="card-title">Banana</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Banana</h3>
+                            <p>Rich in potassium!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/orange.jpg" alt="Orange">
+                        <div class="card-body">
+                            <h5 class="card-title">Orange</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Orange</h3>
+                            <p>Juicy and refreshing!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/strawberry.jpg" alt="Strawberry">
+                        <div class="card-body">
+                            <h5 class="card-title">Strawberry</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Strawberry</h3>
+                            <p>Sweet and tangy!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/grape.jpg" alt="Grape">
+                        <div class="card-body">
+                            <h5 class="card-title">Grape</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Grape</h3>
+                            <p>Perfect for snacking!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/mango.jpg" alt="Mango">
+                        <div class="card-body">
+                            <h5 class="card-title">Mango</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Mango</h3>
+                            <p>Sweet and tropical!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/pineapple.jpg" alt="Pineapple">
+                        <div class="card-body">
+                            <h5 class="card-title">Pineapple</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Pine Apple</h3>
+                            <p>Tropical and tangy!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/cherry.jpg" alt="Cherry">
+                        <div class="card-body">
+                            <h5 class="card-title">Cherry</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Cherry</h3>
+                            <p>Sweet and juicy!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/Peach.jpg" alt="Peach">
+                        <div class="card-body">
+                            <h5 class="card-title">Peach</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Peach</h3>
+                            <p>Soft and sweet!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/Pear.jpg" alt="Pear">
+                        <div class="card-body">
+                            <h5 class="card-title">Pear</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Pear</h3>
+                            <p>Soft and juicy!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/Blackberry.jpg" alt="Blackberry">
+                        <div class="card-body">
+                            <h5 class="card-title">Blackberry</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Blackberry</h3>
+                            <p>Rich in antioxidants!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="images/Pomegranate.jpg" alt="Pomegranate">
+                        <div class="card-body">
+                            <h5 class="card-title">Pomegranate</h5>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-body">
+                          <h3>Pomegranate</h3>
+                            <p>Juicy and full of seeds!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+  </div>
+
+  <footer class="footer text-center">
+    <div class="container">
+        <p>&copy; 2024 Garden Life. All Rights Reserved.</p>
+        <p>Contact: info@gardenlife.com | Phone: (123) 456-7890</p>
+        <div class="social-media">
+            <a href="#" class="social-icon"><img src="images/facebook.png" alt="Facebook" height="30px"></a>
+            <a href="#" class="social-icon"><img src="images/twitter.png" alt="Twitter" height="30px"></a>
+            <a href="#" class="social-icon"><img src="images/instagram.png" alt="Instagram" height="30px"></a>
+        </div>
+
+        <div class="newsletter-signup">
+            <p>Subscribe to our newsletter for gardening tips and updates!</p>
+            <form action="#" method="post">
+                <input type="email" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

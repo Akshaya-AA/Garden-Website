@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Garden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url("images/rose.jpg"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        .login-card {
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-radius: 10px;
+            animation: slideIn 0.5s ease forwards;
+            padding: 30px; 
+        }
+
+        h2 {
+            animation: fadeIn 1s ease-in-out;
+            color: #ffeb3b; 
+        }
+
+        .form-group label {
+            color: rgba(255, 255, 255, 0.5); 
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.2); 
+            color: #fff; 
+        }
+
+        .form-control:focus {
+            border-color: #4caf50; 
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .btn-success {
+            background-color: #4caf50;
+            transition: background-color 0.3s;
+            color: #fff; 
+        }
+
+        .btn-success:hover {
+            background-color: #388e3c; 
+        }
+        .form-control:invalid {
+            border-color: #dc3545; 
+            background-color: rgba(255, 0, 0, 0.1); 
+        }
+
+        .form-control:valid {
+            border-color: #28a745; 
+            background-color: rgba(0, 255, 0, 0.1); 
+        }
+        .form-control:optional{
+                    background-color: aqua;
+        }
+
+        .invalid-feedback {
+            color: #dc3545; 
+            font-size: 0.875rem; 
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">My Garden</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="color: white;"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"><img src="images/home icon.png" alt="" height="20px" width="20px"> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"><img src="images/about icon.png" alt="" height="20px" width="20px"> About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="plantsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/plants icon.png" alt="" height="20px" width="20px"> Plants</a>
+              <div class="dropdown-menu" aria-labelledby="plantsDropdown">
+                <a class="dropdown-item" href="vegetable-gallery.html"><img src="images/vegetable icon.png" alt="" height="20px" width="20px"> Vegetable Gallery</a>
+                <a class="dropdown-item" href="fruits-gallery.html"><img src="images/fruit icon.png" alt="" height="20px" width="20px"> Fruit Gallery</a>
+                <a class="dropdown-item" href="flower-gallery.html"><img src="images/flower icon.png" alt="" height="20px" width="20px"> Flower Gallery</a>
+                <a class="dropdown-item" href="indoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Indoor Plants</a>
+                <a class="dropdown-item" href="outdoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Outdoor Plants</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/shop icon.png" alt="" height="20px" width="20px"> Shop</a>
+              <div class="dropdown-menu" aria-labelledby="shopDropdown">
+                <a class="dropdown-item" href="garden plants.html"><img src="images/grd plants.png" alt="" height="20px" width="20px"> Plants & Seeds</a>
+                <a class="dropdown-item" href="gardening tools.html"><img src="images/gar tools.png" alt="" height="20px" width="20px"> Garden Tools</a>
+                
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"><img src="images/contact icon.png" alt="" height="20px" width="20px"> Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><img src="images/login icon.png" alt="" height="20px" width="20px"> Login</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action="#" method="GET">
+            <input class="form-control bg-white mr-sm-2" type="search" placeholder="Search plants..." aria-label="Search" name="query">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>     
+          <a href="#" class="cart-icon" data-toggle="modal" data-target="#cartModal">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+    </nav>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-card shadow">
+                    <h2 class="text-center mb-4">Login to Your Account</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password" required minlength="6">
+                            <div class="invalid-feedback">Password must be at least 6 characters long.</div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success btn-block">Login</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <a href="#" class="text-muted">Forgot Password?</a>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p>Or login with:</p>
+                        <a href="#" class="btn btn-outline-primary mx-1">Facebook</a>
+                        <a href="#" class="btn btn-outline-danger mx-1">Google</a>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="#" class="text-success">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p>&copy; 2024 Garden Life. All Rights Reserved.</p>
+            <p>Contact: info@gardenlife.com | Phone: (123) 456-7890</p>
+            
+            <div class="social-media">
+                <a href="#" class="social-icon"><img src="images/facebook.png" alt="Facebook" height="30px"></a>
+                <a href="#" class="social-icon"><img src="images/twitter.png" alt="Twitter" height="30px"></a>
+                <a href="#" class="social-icon"><img src="images/instagram.png" alt="Instagram" height="30px"></a>
+            </div>
+    
+            <div class="newsletter-signup">
+                <p>Subscribe to our newsletter for gardening tips and updates!</p>
+                <form action="#" method="post">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+    
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

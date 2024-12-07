@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Garden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tool-card {
+            transition: transform 0.3s;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            height: 400px;
+        }
+        .tool-card:hover {
+            transform: scale(1.05);
+        }
+        .tool-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        .cart-item-details {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+        }
+        .cart-quantity button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">My Garden</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="color: white;"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"><img src="images/home icon.png" alt="" height="20px" width="20px"> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"><img src="images/about icon.png" alt="" height="20px" width="20px"> About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="plantsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/plants icon.png" alt="" height="20px" width="20px"> Plants</a>
+              <div class="dropdown-menu" aria-labelledby="plantsDropdown">
+                <a class="dropdown-item" href="vegetable-gallery.html"><img src="images/vegetable icon.png" alt="" height="20px" width="20px"> Vegetable Gallery</a>
+                <a class="dropdown-item" href="fruits-gallery.html"><img src="images/fruit icon.png" alt="" height="20px" width="20px"> Fruit Gallery</a>
+                <a class="dropdown-item" href="flower-gallery.html"><img src="images/flower icon.png" alt="" height="20px" width="20px"> Flower Gallery</a>
+                <a class="dropdown-item" href="indoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Indoor Plants</a>
+                <a class="dropdown-item" href="outdoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Outdoor Plants</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/shop icon.png" alt="" height="20px" width="20px"> Shop</a>
+              <div class="dropdown-menu" aria-labelledby="shopDropdown">
+                <a class="dropdown-item" href="garden plants.html"><img src="images/grd plants.png" alt="" height="20px" width="20px"> Plants & Seeds</a>
+                <a class="dropdown-item" href="gardening tools.html"><img src="images/gar tools.png" alt="" height="20px" width="20px"> Garden Tools</a>
+
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"><img src="images/contact icon.png" alt="" height="20px" width="20px"> Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><img src="images/login icon.png" alt="" height="20px" width="20px"> Login</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action="#" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search plants..." aria-label="Search" name="query">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>     
+          <a href="#" class="cart-icon" data-toggle="modal" data-target="#cartModal">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+          
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+                        <script>
+                const products = [
+                    { name: "Hand Trowel", price: 20, image: "images/Hand Trowel.jpg", rating: 4.5 },
+                    { name: "Pruning Shears", price: 15, image: "images/Pruning Shear.jpg", rating: 4.2 },
+                    { name: "Garden Fork", price: 25, image: "images/gar fork.jpg", rating: 4.3 },
+                    { name: "Spade", price: 30, image: "images/Spade.jpg", rating: 4.4 },
+                    { name: "Rake", price: 18, image: "images/Rake.jpg", rating: 4.6 },
+                    { name: "Hoe", price: 22, image: "images/hoe.jpeg", rating: 4.4 },
+                    { name: "Watering Can", price: 12, image: "images/Watering Can.jpg", rating: 4.5 },
+                    { name: "Wheelbarrow", price: 50, image: "images/Wheelbarrow.jpg", rating: 4.7 },
+                    { name: "Gardening Gloves", price: 10, image: "images/Glove.jpg", rating: 4.8 },
+                ];
+
+                document.write(
+                    products.map(product => `
+                    <div class="col-md-4">
+                        <div class="card tool-card">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">Price: $${product.price}</p>
+                                <p class="card-text">Rating: ${product.rating}</p>
+                                <button class="btn btn-success add-to-cart" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}" data-rating="${product.rating}">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    `).join("")
+                );
+            </script>
+        </div>
+    </div>
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItemsContainer"></div>
+                    <div class="cart-total">
+                        Total: $<span id="cartTotal">0</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cart = {};
+        const cartBadge = document.getElementById('cartBadge');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotalElement = document.getElementById('cartTotal');
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                const price = parseFloat(button.dataset.price);
+                const image = button.dataset.image;
+                const rating = button.dataset.rating;
+
+                if (!cart[name]) {
+                    cart[name] = { name, price, image, rating, quantity: 1 };
+                } else {
+                    cart[name].quantity++;
+                }
+
+                updateCart();
+            });
+        });
+
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            for (const key in cart) {
+                const item = cart[key];
+                total += item.price * item.quantity;
+                count += item.quantity;
+
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <span>${item.name}</span><br>
+                            <span>$${item.price}</span><br>
+                            <span>Rating: ${item.rating}</span>
+                            <div class="cart-quantity">
+                                <button class="btn btn-sm btn-danger" onclick="removeFromCart('${key}')">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="btn btn-sm btn-success" onclick="addToCart('${key}')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            cartTotalElement.textContent = total.toFixed(2);
+            cartBadge.textContent = count;
+        }
+
+        function addToCart(name) {
+            cart[name].quantity++;
+            updateCart();
+        }
+
+        function removeFromCart(name) {
+            if (cart[name].quantity > 1) {
+                cart[name].quantity--;
+            } else {
+                delete cart[name];
+            }
+            updateCart();
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Garden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+            .section {
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .section h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+        .content-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .team-member {
+            margin: 20px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        .team-member img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">My Garden</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="color: white;"><i class="fas fa-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html"><img src="images/home icon.png" alt="" height="20px" width="20px"> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html"><img src="images/about icon.png" alt="" height="20px" width="20px"> About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="plantsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="images/plants icon.png" alt="" height="20px" width="20px"> Plants</a>
+          <div class="dropdown-menu" aria-labelledby="plantsDropdown">
+            <a class="dropdown-item" href="vegetable-gallery.html"><img src="images/vegetable icon.png" alt="" height="20px" width="20px"> Vegetable Gallery</a>
+            <a class="dropdown-item" href="fruits-gallery.html"><img src="images/fruit icon.png" alt="" height="20px" width="20px"> Fruit Gallery</a>
+            <a class="dropdown-item" href="flower-gallery.html"><img src="images/flower icon.png" alt="" height="20px" width="20px"> Flower Gallery</a>
+            <a class="dropdown-item" href="indoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Indoor Plants</a>
+            <a class="dropdown-item" href="outdoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Outdoor Plants</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="images/shop icon.png" alt="" height="20px" width="20px"> Shop</a>
+          <div class="dropdown-menu" aria-labelledby="shopDropdown">
+            <a class="dropdown-item" href="garden plants.html"><img src="images/grd plants.png" alt="" height="20px" width="20px"> Plants & Seeds</a>
+            <a class="dropdown-item" href="gardening tools.html"><img src="images/gar tools.png" alt="" height="20px" width="20px"> Garden Tools</a>
+
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html"><img src="images/contact icon.png" alt="" height="20px" width="20px"> Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.html"><img src="images/login icon.png" alt="" height="20px" width="20px"> Login</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="#" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search plants..." aria-label="Search" name="query">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>     
+      <a href="#" class="cart-icon" data-toggle="modal" data-target="#cartModal">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </div>
+</nav>
+   
+<div class="section">
+    <h2>Our Story</h2>
+    <div class="content-card">
+        <p>At Garden Life, we are dedicated to connecting people with the beauty and tranquility of nature. Our journey began with a shared passion for gardening, and we strive to inspire individuals to cultivate their own green spaces. Through our community, we hope to foster a love for plants and sustainable living.</p>
+    </div>
+</div>
+<div class="section bg-light">
+    <h2>Our Mission</h2>
+    <div class="content-card">
+        <p>Our mission is to promote environmental awareness and sustainable gardening practices. We provide resources, tools, and support to help everyone, from beginners to seasoned gardeners, grow their own plants and contribute to a greener world. Together, we can make a difference, one garden at a time.</p>
+    </div>
+</div>
+<div class="section">
+    <h2>Meet Our Team</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-3 team-member">
+            <img src="images/team1.webp" alt="Emma Green">
+            <h5>Emma Green</h5>
+            <p>Founder & CEO</p>
+            <p>Emma is passionate about sustainable gardening and loves sharing her knowledge with the community.</p>
+        </div>
+        <div class="col-md-3 team-member">
+            <img src="images/team2.jpg" alt="Lucas Brown">
+            <h5>Lucas Brown</h5>
+            <p>Head Gardener</p>
+            <p>Lucas has over 10 years of experience in horticulture and specializes in organic gardening techniques.</p>
+        </div>
+        <div class="col-md-3 team-member">
+            <img src="images/team1.webp" alt="Sophia White">
+            <h5>Sophia White</h5>
+            <p>Community Coordinator</p>
+            <p>Sophia organizes workshops and events to connect gardeners and foster a love for plants.</p>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p>&copy; 2024 Garden Life. All Rights Reserved.</p>
+        <p>Contact: info@gardenlife.com | Phone: (123) 456-7890</p>
+        
+        <div class="social-media">
+            <a href="#" class="social-icon"><img src="images/facebook.png" alt="Facebook" height="30px"></a>
+            <a href="#" class="social-icon"><img src="images/twitter.png" alt="Twitter" height="30px"></a>
+            <a href="#" class="social-icon"><img src="images/instagram.png" alt="Instagram" height="30px"></a>
+        </div>
+
+        <div class="newsletter-signup">
+            <p>Subscribe to our newsletter for gardening tips and updates!</p>
+            <form action="#" method="post">
+                <input type="email" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

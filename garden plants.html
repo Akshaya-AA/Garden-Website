@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Garden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .navbar-brand:hover {
+            color: #d4edda;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: white;
+            font-size: 1.5rem;
+            margin-left: 20px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 0.75rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .image-container .back {
+            opacity: 0;
+        }
+
+        .image-container:hover .back {
+            opacity: 1;
+        }
+
+        .image-container:hover .front {
+            opacity: 0;
+        }
+
+        .icons-container {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-container:hover .icons-container {
+            display: flex;
+        }
+
+        .icons-container i {
+            color: green;
+            font-size: 1.5rem;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .modal-body .table img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">My Garden</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="color: white;"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"><img src="images/home icon.png" alt="" height="20px" width="20px"> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"><img src="images/about icon.png" alt="" height="20px" width="20px"> About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="plantsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/plants icon.png" alt="" height="20px" width="20px"> Plants</a>
+              <div class="dropdown-menu" aria-labelledby="plantsDropdown">
+                <a class="dropdown-item" href="vegetable-gallery.html"><img src="images/vegetable icon.png" alt="" height="20px" width="20px"> Vegetable Gallery</a>
+                <a class="dropdown-item" href="fruits-gallery.html"><img src="images/fruit icon.png" alt="" height="20px" width="20px"> Fruit Gallery</a>
+                <a class="dropdown-item" href="flower-gallery.html"><img src="images/flower icon.png" alt="" height="20px" width="20px"> Flower Gallery</a>
+                <a class="dropdown-item" href="indoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Indoor Plants</a>
+                <a class="dropdown-item" href="outdoorplants.html"><img src="images/indoor icon.png" alt="" height="20px" width="20px"> Outdoor Plants</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="images/shop icon.png" alt="" height="20px" width="20px"> Shop</a>
+              <div class="dropdown-menu" aria-labelledby="shopDropdown">
+                <a class="dropdown-item" href="garden plants.html"><img src="images/grd plants.png" alt="" height="20px" width="20px"> Plants & Seeds</a>
+                <a class="dropdown-item" href="gardening tools.html"><img src="images/gar tools.png" alt="" height="20px" width="20px"> Garden Tools</a>
+
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"><img src="images/contact icon.png" alt="" height="20px" width="20px"> Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><img src="images/login icon.png" alt="" height="20px" width="20px"> Login</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action="#" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search plants..." aria-label="Search" name="query">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>     
+          <a href="#" class="cart-icon" data-toggle="modal" data-target="#cartModal">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+    </nav>
+
+    
+    <div class="container mt-5">
+        <div class="row" id="productGrid"></div>
+    </div>
+
+    <!-- Cart-->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Rating</th>
+                                <th>Quantity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartItems"></tbody>
+                    </table>
+                    <div class="text-right">
+                        <h5>Total: ₹<span id="cartTotal">0</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { name: "Carrot", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/carrot.jpg", imgHover: "images/beetroot seed.jpeg" },
+            { name: "Broccoli", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/broccoli.jpg", imgHover: "images/broccoli seed.jpeg" },
+            { name: "Spinach", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/spinach.jpg", imgHover: "images/beetroot seed.jpeg" },
+            { name: "Tomato", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/tomato.jpg", imgHover: "images/broccoli seed.jpeg" },
+            { name: "Potato", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/potato.jpg", imgHover: "images/beetroot seed.jpeg" },
+            { name: "Cauliflower", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/cauliflower.jpg", imgHover: "images/broccoli seed.jpeg" },
+            { name: "Eggplant", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/eggplant.jpg", imgHover: "images/beetroot seed.jpeg" },
+            { name: "Raddish", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/radish.jpg", imgHover: "images/broccoli seed.jpeg" },
+            { name: "Asparagus", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/asparagus.jpg", imgHover: "images/beetroot seed.jpeg" },
+            { name: "Kale", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/Kale.jpg", imgHover: "images/broccoli seed.jpeg" },
+            { name: "Beetroot", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/beets.jpg", imgHover: "images/beetroot seed.jpeg" },
+            { name: "Brussels Sprouts", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/brussels sprouts.jpg", imgHover: "images/broccoli seed.jpeg" },
+            { name: "Rose", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/rose.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Tulip", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/tulip.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Daisy", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/daisy.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Sunflower", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/sunflower.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Orchid", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/orchid.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Lilly", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/lily.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Marigold", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/marigold.webp", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Hibiscus", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/hibiscus.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Peony", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/peony.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Daffodil", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/daffodil.jpg", imgHover: "images/flowers seeds.jpeg" },
+            { name: "Apple", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/apple.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Banana", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/banana.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Orange", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/orange.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Grape", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/grape.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Strawberry", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/strawberry.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Mango", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/mango.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Pineapple", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/pineapple.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Peach", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/peach.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Pear", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/pear.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Cherry", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/cherry.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Blackberry", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/blackberry.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Pomegranate", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/Pomegranate.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Banana", price: 80, rating: "⭐⭐⭐⭐⭐", img: "images/banana.jpg", imgHover: "images/fruits seeds.jpeg" },
+            { name: "Grape", price: 70, rating: "⭐⭐⭐⭐⭐", img: "images/grape.jpg", imgHover: "images/fruits seeds.jpeg" },
+            
+        ];
+
+        const cart = [];
+        const productGrid = document.getElementById("productGrid");
+        const cartItems = document.getElementById("cartItems");
+        const cartBadge = document.getElementById("cartBadge");
+        const cartTotal = document.getElementById("cartTotal");
+
+        function renderProducts() {
+            products.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "col-md-4";
+                card.innerHTML = `
+                    <div class="card mb-4 shadow-sm">
+                        <div class="image-container">
+                            <img src="${product.img}" alt="${product.name}" class="front">
+                            <img src="${product.imgHover}" alt="${product.name} Hover" class="back">
+                            <!-- Icons for like, save, share -->
+                            <div class="icons-container">
+                                <i class="fas fa-heart" onclick="likeProduct('${product.name}')"></i>
+                                <i class="fas fa-bookmark" onclick="saveProduct('${product.name}')"></i>
+                                <i class="fas fa-share-alt" onclick="shareProduct('${product.name}')"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">Price: ₹${product.price}</p>
+                            <p class="card-text">Rating: ${product.rating}</p>
+                            <button class="btn btn-success btn-block" onclick="addToCart('${product.name}')">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        function likeProduct(productName) {
+            alert(`${productName} liked!`);
+        }
+
+        function saveProduct(productName) {
+            alert(`${productName} saved to your favorites!`);
+        }
+
+        function shareProduct(productName) {
+            alert(`Sharing ${productName}...`);
+        }
+
+        function addToCart(productName) {
+            const product = products.find(p => p.name === productName);
+            const cartProduct = cart.find(p => p.name === productName);
+            if (cartProduct) {
+                cartProduct.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        function removeFromCart(productName) {
+            const index = cart.findIndex(p => p.name === productName);
+            if (index !== -1) {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(product => {
+                total += product.price * product.quantity;
+                cartItems.innerHTML += `
+                    <tr>
+                        <td><img src="${product.img}" alt="${product.name}" class="img-fluid"></td>
+                        <td>${product.name}</td>
+                        <td>₹${product.price}</td>
+                        <td>${product.rating}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="increaseQuantity('${product.name}')">+</button>
+                            ${product.quantity}
+                            <button class="btn btn-sm btn-primary" onclick="decreaseQuantity('${product.name}')">-</button>
+                        </td>
+                        <td><button class="btn btn-sm btn-danger" onclick="removeFromCart('${product.name}')">Remove</button></td>
+                    </tr>
+                `;
+            });
+            cartBadge.textContent = cart.length;
+            cartTotal.textContent = total;
+        }
+
+        function increaseQuantity(productName) {
+            const product = cart.find(p => p.name === productName);
+            if (product) {
+                product.quantity++;
+                updateCart();
+            }
+        }
+
+        function decreaseQuantity(productName) {
+            const product = cart.find(p => p.name === productName);
+            if (product && product.quantity > 1) {
+                product.quantity--;
+                updateCart();
+            }
+        }
+
+        renderProducts();
+    </script>
+    
+    <footer class="footer text-center">
+        <div class="container">
+            <p>&copy; 2024 Garden Life. All Rights Reserved.</p>
+            <p>Contact: info@gardenlife.com | Phone: (123) 456-7890</p>
+            
+            <div class="social-media">
+                <a href="#" class="social-icon"><img src="images/facebook.png" alt="Facebook" height="30px"></a>
+                <a href="#" class="social-icon"><img src="images/twitter.png" alt="Twitter" height="30px"></a>
+                <a href="#" class="social-icon"><img src="images/instagram.png" alt="Instagram" height="30px"></a>
+            </div>
+    
+            <div class="newsletter-signup">
+                <p>Subscribe to our newsletter for gardening tips and updates!</p>
+                <form action="#" method="post">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+    
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

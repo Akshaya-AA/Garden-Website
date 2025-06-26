@@ -10,7 +10,7 @@
     
     <style>
        .carousel-item {
-    height: 100vh;
+    height: auto;
     min-height: 300px;
 }
 
@@ -25,7 +25,11 @@
     width: 100%;
     padding: 0 15px;
 }
-
+@media (min-width: 768px) {
+    .carousel-item {
+        height: 100vh;
+    }
+}
 .carousel-caption h2 {
     font-size: 3em;
 }
@@ -40,6 +44,10 @@
     .carousel-caption h2 {
         font-size: 1.2em;
     }
+}
+
+.container h2:first-of-type {
+    margin-top: 0;
 }
         .intro-section {
             padding: 20px;
